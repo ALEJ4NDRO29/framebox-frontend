@@ -3,6 +3,7 @@
 /* ORANGE SECONDARY #d65a31 */
 /* WHITE    PRIMARY #eeeeee */
 
+/* APP STYLES */
 :root {
     --background-color: #222831;
     --foreground-color: #393e46;
@@ -30,6 +31,6 @@ a:hover {
     color: var(--primary-color);
 }
 
-.text-center {
-    text-align: center;
+.content {
+    margin-top:15px;
 }

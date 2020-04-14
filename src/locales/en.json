@@ -1,3 +1,11 @@
 {
-  "message": "hello i18n !!"
+  "about": "About",
+  "already_have_account": "Already have an account?",
+  "create_account": "Create account",
+  "email": "Email",
+  "home": "Home",
+  "login": "Login",
+  "not_have_account": "You do not have an account?",
+  "password": "Password",
+  "resources": "Resources"
 }

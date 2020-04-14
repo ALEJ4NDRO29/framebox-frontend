@@ -1,9 +1,10 @@
 <template>
   <div>
     <NavBar />
-    <b-container>
+    <b-container class="content">
       <router-view />
     </b-container>
+    <!-- FOOTER -->
   </div>
 </template>
 
