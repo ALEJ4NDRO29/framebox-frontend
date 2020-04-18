@@ -1,13 +1,13 @@
 <template>
-  <div class="text-center">
+  <div>
     <b-row>
-      <b-col cols="12" lg="6" offset-md="3">
-        <h1>{{$t('login')}}</h1>
+      <b-col cols="12" lg="6" offset-lg="3">
+        <h1 class="text-center">{{$t('login')}}</h1>
+        <auth-login-form />
         <span>
           {{$t('not_have_account')}}
           <router-link :to="{name: 'Register'}">{{$t('create_account')}}</router-link>
         </span>
-        <auth-login-form />
       </b-col>
     </b-row>
   </div>
@@ -15,6 +15,7 @@
 
 <script>
 import AuthLoginForm from "@/components/auth/AuthLoginForm";
+
 export default {
   name: "Login",
   components: {

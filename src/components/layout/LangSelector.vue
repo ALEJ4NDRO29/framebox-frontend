@@ -6,8 +6,6 @@
       @click="onLangChange(lang)"
     >{{lang.toUpperCase()}}</b-dropdown-item>
   </b-nav-item-dropdown>
-
-  <!-- <div>{{$langs}}</div> -->
 </template>
 
 <script>

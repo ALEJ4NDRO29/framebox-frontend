@@ -4,8 +4,12 @@
   "create_account": "Create account",
   "email": "Email",
   "home": "Home",
+  "invalid_credentials": "Invalid credentials",
   "login": "Login",
+  "logout": "Logout",
+  "nickname": "Nickname",
   "not_have_account": "You do not have an account?",
   "password": "Password",
+  "profile": "Profile",
   "resources": "Resources"
 }

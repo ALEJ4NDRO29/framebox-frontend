@@ -4,8 +4,12 @@
   "create_account": "Crear cuenta",
   "email": "Correo electrónico",
   "home": "Inicio",
+  "invalid_credentials": "Credenciales inválidas",
   "login": "Iniciar sesión",
+  "logout": "Cerrar sesión",
+  "nickname": "Nombre de usuario",
   "not_have_account": "¿No tienes cuenta?",
   "password": "Contraseña",
+  "profile": "Perfil",
   "resources": "Recursos"
 }

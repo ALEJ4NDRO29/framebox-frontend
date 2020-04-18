@@ -2,21 +2,23 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/home/Home.vue'
 
+
+import { Jwt } from "../common/jwt";
 Vue.use(VueRouter)
+
+const loginRequired = []
+const loginNotRequired = ['Login', 'Register']
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/about/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/about/About.vue'),
   },
   {
     path: '/resources',
@@ -26,12 +28,21 @@ const routes = [
   {
     path: '/auth/login',
     name: 'Login',
-    component: () => import('../views/auth/Login.vue')
+    component: () => import('../views/auth/Login.vue'),
   },
   {
     path: '/auth/register',
     name: 'Register',
-    component: () => import('../views/auth/Register.vue')
+    component: () => import('../views/auth/Register.vue'),
+  },
+  {
+    path: '/profile/@:nickname',
+    name: 'Profile',
+    component: () => import('../views/profile/Profile')
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 
@@ -39,6 +50,20 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
+
+router.beforeEach((to, from, next) => {
+  // Usuario NO logueado para acceder
+  if (loginNotRequired.includes(to.name) && Jwt.get()) {
+    next({ name: 'Home' });
+  }
+
+  // Usuario logueado para acceder
+  if (loginRequired.includes(to.name) && !Jwt.get()) {
+    next({ name: 'Login' });
+  }
+
+  next();
+});
 
 export default router
