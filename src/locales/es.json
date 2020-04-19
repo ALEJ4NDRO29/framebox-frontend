@@ -1,17 +1,22 @@
 {
   "about": "Acerca de",
   "already_have_account": "¿Tienes cuenta?",
+  "bio": "Bio",
   "create_account": "Crear cuenta",
   "email": "Correo electrónico",
   "home": "Inicio",
   "invalid_credentials": "Credenciales inválidas",
+  "karma": "Karma",
   "login": "Iniciar sesión",
   "logout": "Cerrar sesión",
+  "name": "Nombre",
   "nickname": "Nombre de usuario",
   "not_have_account": "¿No tienes cuenta?",
   "ok": "Ok",
   "password": "Contraseña",
   "profile": "Perfil",
   "resources": "Recursos",
-  "user_not_found": "No hemos podido encontrar este usuario"
+  "user_not_found": "No hemos podido encontrar este usuario",
+  "viewed_content": "Contenido visto",
+  "website": "Página web"
 }

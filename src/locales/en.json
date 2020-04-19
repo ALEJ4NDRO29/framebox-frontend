@@ -1,17 +1,22 @@
 {
   "about": "About",
   "already_have_account": "Already have an account?",
+  "bio": "Bio",
   "create_account": "Create account",
   "email": "Email",
   "home": "Home",
   "invalid_credentials": "Invalid credentials",
+  "karma": "Karma",
   "login": "Login",
   "logout": "Logout",
+  "name": "",
   "nickname": "Nickname",
   "not_have_account": "You do not have an account?",
   "ok": "Ok",
   "password": "Password",
   "profile": "Profile",
   "resources": "Resources",
-  "user_not_found": "We could not find this user"
+  "user_not_found": "We could not find this user",
+  "viewed_content": "Viewed content",
+  "website": "Website"
 }

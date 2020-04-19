@@ -4,26 +4,27 @@
   </div>
   <div v-else>
     <h1>{{this.$route.params.nickname}}</h1>
-    {{profile}}
+    <profile-details />
+    <review-list v-if="1===1" />
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import { PROFILE_LOAD, PROFILE_UNLOAD, ALERT } from "@/store/actions.types";
+import ProfileDetails from "@/components/profile/ProfileDetails";
+import ReviewList from "@/components/reviews/ReviewList";
 
 export default {
   name: "Profile",
+  components: {
+    ProfileDetails,
+    ReviewList
+  },
+
   data() {
     return {
       loading: true
     };
-  },
-
-  computed: {
-    ...mapGetters({
-      profile: "getProfile"
-    })
   },
 
   mounted() {
