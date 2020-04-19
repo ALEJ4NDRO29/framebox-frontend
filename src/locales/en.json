@@ -9,7 +9,9 @@
   "logout": "Logout",
   "nickname": "Nickname",
   "not_have_account": "You do not have an account?",
+  "ok": "Ok",
   "password": "Password",
   "profile": "Profile",
-  "resources": "Resources"
+  "resources": "Resources",
+  "user_not_found": "We could not find this user"
 }

@@ -53,3 +53,7 @@ a:hover {
 .text-framebox-secondary {
     color: var(--secondary-color)
 }
+
+.modal-body {
+    color: var(--background-color);
+}

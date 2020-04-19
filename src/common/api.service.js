@@ -69,3 +69,9 @@ export const Profile = {
         return ApiService.get(`/profile/get/${nickname}`);
     }
 }
+
+export const Review = {
+    fromUser(nickname) {
+        return ApiService.get(`/review/nickname/${nickname}`)
+    }
+}
