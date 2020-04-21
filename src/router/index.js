@@ -26,6 +26,11 @@ const routes = [
     component: () => import('../views/resources/Resources.vue')
   },
   {
+    path: '/resources/:slug',
+    name: 'ResourcesDetails',
+    component: () => import('../views/resources/ResourcesDetails')
+  },
+  {
     path: '/auth/login',
     name: 'Login',
     component: () => import('../views/auth/Login.vue'),

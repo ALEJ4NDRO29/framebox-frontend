@@ -48,7 +48,6 @@ export default {
   async beforeRouteUpdate(to, from, next) {
     await this.unloadProfile();
     next();
-    // this.loadProfile(to.params.nickname)
     this.loadProfile();
   },
 

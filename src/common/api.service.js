@@ -70,7 +70,16 @@ export const Profile = {
     }
 }
 
+export const Resource = {
+    get(params) {
+        return ApiService.query('/resource', params);
+    }
+}
+
 export const Review = {
+    get(page = 1) {
+        return ApiService.query('/review', {page});
+    },
     fromUser(nickname, page = 1) {
         return ApiService.query(`/review/nickname/${nickname}`, { page })
     }

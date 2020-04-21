@@ -72,7 +72,7 @@ export default {
       this.$store.dispatch(PROFILE_REVIEWS_UNLOAD);
     },
     change() {
-      console.log(this.currentPage);
+      this.loadReviews();
     }
   }
 };

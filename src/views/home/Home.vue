@@ -1,15 +1,21 @@
 <template>
   <div>
-    <h1>{{$t('home')}}</h1>
+    <resource-list/>
+
+    <review-latest/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import ResourceList from "@/components/resource/ResourceLatest";
+import ReviewLatest from "@/components/reviews/ReviewLatest";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-  }
-}
+    ResourceList,
+    ReviewLatest
+  },
+ 
+};
 </script>

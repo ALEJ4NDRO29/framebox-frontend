@@ -16,7 +16,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import {
-  faStar, faMusic, faGamepad, faCouch, faFilm
+  faStar, faMusic, faGamepad, faCouch, faFilm,
+  faSearch
 } from '@fortawesome/free-solid-svg-icons'
 
 Vue.config.productionTip = false
@@ -29,7 +30,8 @@ Vue.component('v-pagination', vPagination);
  *  <font-awesome-icon icon="bars" />
  */
 library.add([
-  faStar, faFilm, faMusic, faGamepad, faCouch]);
+  faStar, faFilm, faMusic, faGamepad, faCouch,
+  faSearch]);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 ApiService.init();
