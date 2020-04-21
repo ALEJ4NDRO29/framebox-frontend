@@ -11,7 +11,6 @@ const actions = {
         var res = await Profile.get(nickname);
         var profile = res.data.profile;
 
-        console.log(profile);
         commit(SET_LOADED_PROFILE, profile);
     },
     async [PROFILE_UNLOAD]({commit}) {

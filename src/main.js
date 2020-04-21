@@ -11,10 +11,26 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import './style.css';
 import { ApiService } from './common/api.service';
 
+// Font Awesome
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+import {
+  faStar, faMusic, faGamepad, faCouch, faFilm
+} from '@fortawesome/free-solid-svg-icons'
+
 Vue.config.productionTip = false
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.component('v-pagination', vPagination);
+
+/**
+ *  Utilizar:
+ *  <font-awesome-icon icon="bars" />
+ */
+library.add([
+  faStar, faFilm, faMusic, faGamepad, faCouch]);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 ApiService.init();
 

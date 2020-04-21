@@ -27,7 +27,7 @@ export const ApiService = {
     },
 
     query(resource, params) {
-        return Vue.axios.get(resource, params);
+        return Vue.axios.get(resource, { params });
     },
 
     get(resource) {
@@ -71,7 +71,7 @@ export const Profile = {
 }
 
 export const Review = {
-    fromUser(nickname) {
-        return ApiService.get(`/review/nickname/${nickname}`)
+    fromUser(nickname, page = 1) {
+        return ApiService.query(`/review/nickname/${nickname}`, { page })
     }
 }

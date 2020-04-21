@@ -45,6 +45,10 @@ const mutations = {
             nickname: user.nickname,
             email: user.email
         }
+
+        if(user.type === 'Admin') {
+            state.currentUser.isAdmin = true;
+        }
     },
     [REMOVE_CURRENT_USER](state) {
         Jwt.remove();

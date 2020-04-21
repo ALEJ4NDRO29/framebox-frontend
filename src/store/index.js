@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import auth from './auth/auth.module';
 import layout from './layout/layout.module';
 import profile from './profile/profile.module';
+import review from './review/review.module';
 
 Vue.use(Vuex)
 
@@ -10,6 +11,7 @@ export default new Vuex.Store({
   modules: {
     auth,
     layout,
-    profile
+    profile,
+    review
   }
 })

@@ -4,27 +4,52 @@
   </div>
   <div v-else>
     <h1>{{this.$route.params.nickname}}</h1>
+    <profile-update-button
+      v-if="currentUser && (currentUser.nickname === this.$route.params.nickname || currentUser.isAdmin)"
+      :nickname="this.$route.params.nickname"
+    />
+
     <profile-details />
-    <review-list v-if="1===1" />
+
+    <div class="reviews">
+      <h2>Reviews</h2>
+      <review-user-list />
+    </div>
   </div>
 </template>
 
 <script>
 import { PROFILE_LOAD, PROFILE_UNLOAD, ALERT } from "@/store/actions.types";
 import ProfileDetails from "@/components/profile/ProfileDetails";
-import ReviewList from "@/components/reviews/ReviewList";
+import ReviewUserList from "@/components/reviews/ReviewUserList";
+import ProfileUpdateButton from "@/components/profile/ProfileUpdateButton";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Profile",
   components: {
     ProfileDetails,
-    ReviewList
+    ProfileUpdateButton,
+    ReviewUserList
+  },
+
+  computed: {
+    ...mapGetters({
+      currentUser: "getCurrentUser"
+    })
   },
 
   data() {
     return {
       loading: true
     };
+  },
+
+  async beforeRouteUpdate(to, from, next) {
+    await this.unloadProfile();
+    next();
+    // this.loadProfile(to.params.nickname)
+    this.loadProfile();
   },
 
   mounted() {
@@ -36,9 +61,9 @@ export default {
   },
 
   methods: {
-    loadProfile() {
+    loadProfile(nickname = this.$route.params.nickname) {
       this.$store
-        .dispatch(PROFILE_LOAD, this.$route.params.nickname)
+        .dispatch(PROFILE_LOAD, nickname)
         .then(() => {
           this.loading = false;
         })
@@ -50,10 +75,16 @@ export default {
         });
     },
 
-    unloadProfile() {
-      console.log("unload");
-      this.$store.dispatch(PROFILE_UNLOAD);
+    async unloadProfile() {
+      await this.$store.dispatch(PROFILE_UNLOAD);
     }
   }
 };
 </script>
+
+<style scoped>
+.reviews {
+  margin-top: 25px;
+}
+
+</style>
