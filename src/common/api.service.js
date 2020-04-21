@@ -67,6 +67,9 @@ export const Auth = {
 export const Profile = {
     get(nickname) {
         return ApiService.get(`/profile/get/${nickname}`);
+    },
+    getViewed(params) {
+        return ApiService.query('/profile/me/viewed', params);
     }
 }
 
@@ -78,7 +81,7 @@ export const Resource = {
 
 export const Review = {
     get(page = 1) {
-        return ApiService.query('/review', {page});
+        return ApiService.query('/review', { page });
     },
     fromUser(nickname, page = 1) {
         return ApiService.query(`/review/nickname/${nickname}`, { page })

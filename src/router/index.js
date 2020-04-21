@@ -6,8 +6,8 @@ import Home from '../views/home/Home.vue'
 import { Jwt } from "../common/jwt";
 Vue.use(VueRouter)
 
-const loginRequired = []
-const loginNotRequired = ['Login', 'Register']
+const loginRequired = ['ProfileViewed'];
+const loginNotRequired = ['Login', 'Register'];
 
 const routes = [
   {
@@ -44,6 +44,11 @@ const routes = [
     path: '/profile/@:nickname',
     name: 'Profile',
     component: () => import('../views/profile/Profile')
+  },
+  {
+    path: '/profile/viewed',
+    name: 'ProfileViewed',
+    component: () => import('../views/profile/ProfileViewed')
   },
   {
     path: '*',

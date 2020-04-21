@@ -2,7 +2,7 @@
   <b-card>
     <b-card-text>
       <div>
-        <resource-icon-type :type="resource.type.name" />
+        <resource-icon-type class="icon" :type="resource.type.name" />
 
         <router-link
           :to="{name: 'ResourcesDetails', params: {slug: resource.slug}}"
@@ -25,3 +25,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.icon {
+    margin-right: 10px;
+}
+</style>

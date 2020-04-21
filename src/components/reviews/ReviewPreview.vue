@@ -3,9 +3,9 @@
     <b-card-text>
       <h2>
         {{review.resource.title}}
-        <resource-icon-type :type="review.resource.type.name"/>
+        <resource-icon-type :type="review.resource.type.name" />
       </h2>
-      
+
       <div>
         {{formatDate(review.createdAt)}}
         <font-awesome-icon icon="star" />
@@ -37,8 +37,9 @@ export default {
   },
 
   methods: {
-    formatDate(date) {
-      return new Date(date);
+    formatDate(dateStr) {
+      var date = new Date(dateStr);
+      return `${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`;
     }
   }
 };

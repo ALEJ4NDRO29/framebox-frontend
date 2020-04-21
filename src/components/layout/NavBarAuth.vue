@@ -5,6 +5,9 @@
     <b-dropdown-item :to="{name: 'Profile', params: { nickname: currentUser.nickname } }">
       {{$t('profile')}}
     </b-dropdown-item>
+    <b-dropdown-item :to="{name: 'ProfileViewed'}">
+      {{$t('viewed')}}
+    </b-dropdown-item>
     <b-dropdown-item @click="logout()">{{$t('logout')}}</b-dropdown-item>
   </b-nav-item-dropdown>
 
