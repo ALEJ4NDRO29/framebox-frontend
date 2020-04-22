@@ -3,7 +3,7 @@
     <b-spinner variant="light" label="Loading..."></b-spinner>
   </div>
   <div v-else>
-    <h1>{{this.$route.params.nickname}}</h1>
+    <h1>{{profile.nickname}}</h1>
     <profile-update-button
       v-if="currentUser && (currentUser.nickname === this.$route.params.nickname || currentUser.isAdmin)"
       :nickname="this.$route.params.nickname"
@@ -35,6 +35,7 @@ export default {
 
   computed: {
     ...mapGetters({
+      profile: "getProfile",
       currentUser: "getCurrentUser"
     })
   },

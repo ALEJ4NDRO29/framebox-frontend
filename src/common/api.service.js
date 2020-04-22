@@ -79,6 +79,12 @@ export const Profile = {
 export const Resource = {
     get(params) {
         return ApiService.query('/resource', params);
+    },
+    getDetails(slug) {
+        return ApiService.get(`/resource/slug/${slug}`);
+    },
+    isViewed(slug) {
+        return ApiService.get(`/profile/me/viewed/${slug}`)
     }
 }
 

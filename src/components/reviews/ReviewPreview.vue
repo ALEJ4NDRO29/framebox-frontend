@@ -2,8 +2,8 @@
   <b-card>
     <b-card-text>
       <h2>
-        {{review.resource.title}}
         <resource-icon-type :type="review.resource.type.name" />
+        {{review.resource.title}}
       </h2>
 
       <div>

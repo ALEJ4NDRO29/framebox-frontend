@@ -18,7 +18,6 @@
       <!-- BTN SEARCH -->
       <b-input-group-append>
         <b-button :disabled="searching" @click="search" variant="framebox-secondary">
-          <!-- FIXME: hover color  <font-awesome-icon icon="search" />  -->
           {{$t('search')}}
         </b-button>
       </b-input-group-append>

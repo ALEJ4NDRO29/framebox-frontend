@@ -1,28 +1,58 @@
 <template>
   <div v-if="profile">
     <div>
-      <b>{{$t('karma')}}: </b>
-      <span>{{profile.karma}}</span>
+      <b-row>
+        <b-col cols="12" sm="2">
+          <b>{{$t('karma')}}:</b>
+        </b-col>
+        <b-col>
+          <span>{{profile.karma}}</span>
+        </b-col>
+      </b-row>
     </div>
 
     <div v-if="profile.name">
-      <b>{{$t('name')}}: </b>
-      <span>{{profile.name}}</span>
+      <b-row>
+        <b-col cols="12" sm="2">
+          <b>{{$t('name')}}:</b>
+        </b-col>
+        <b-col>
+          <span>{{profile.name}}</span>
+        </b-col>
+      </b-row>
     </div>
 
     <div v-if="profile.website">
-      <b>{{$t('website')}}: </b>
-      <a target="_blank" :href="profile.website">{{profile.website}}</a>
+      <b-row>
+        <b-col cols="12" sm="2">
+          <b>{{$t('website')}}:</b>
+        </b-col>
+        <b-col>
+          <a target="_blank" :href="profile.website">{{profile.website}}</a>
+        </b-col>
+      </b-row>
     </div>
 
     <div v-if="profile.status">
-      <b>{{$t('status')}}: </b>
-      <span>{{profile.status}}</span>
+      <b-row>
+        <b-col cols="12" sm="2">
+          <b>{{$t('status')}}:</b>
+        </b-col>
+        <b-col>
+          <span>{{profile.status}}</span>
+        </b-col>
+      </b-row>
     </div>
 
     <div v-if="profile.bio">
-      <b>{{$t('bio')}}: </b>
-      <span>{{profile.bio}}</span>
+      <b-row>
+        <b-col cols="12" sm="2">
+          <b>{{$t('bio')}}:</b>
+        </b-col>
+        <b-col>
+          <span>{{profile.bio}}</span>
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
