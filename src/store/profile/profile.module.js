@@ -1,9 +1,10 @@
-import { PROFILE_UNLOAD, PROFILE_LOAD, VIEWED_LOAD, VIEWED_UNLOAD } from "../actions.types";
+import { PROFILE_UNLOAD, PROFILE_LOAD, VIEWED_LOAD, VIEWED_UNLOAD, PROFILE_UPDATE_LOAD, PROFILE_UPDATE_UNLOAD } from "../actions.types";
 import { Profile } from "../../common/api.service";
-import { SET_LOADED_PROFILE, UNSET_LOADED_PROFILE, SET_VIEWED, UNSET_VIEWED } from "../mutations.types";
+import { SET_LOADED_PROFILE, UNSET_LOADED_PROFILE, SET_VIEWED, UNSET_VIEWED, SET_PROFILE_UPDATING, UNSET_PROFILE_UPDATING } from "../mutations.types";
 
 const state = {
     profile: null,
+    profileUpdating: null,
     viewed: null
 }
 
@@ -16,6 +17,15 @@ const actions = {
     },
     async [PROFILE_UNLOAD]({ commit }) {
         commit(UNSET_LOADED_PROFILE);
+    },
+
+    async [PROFILE_UPDATE_LOAD]({commit}, nickname) {
+        var res = await Profile.get(nickname);
+        var profile = res.data;
+        commit(SET_PROFILE_UPDATING, profile);
+    },
+    [PROFILE_UPDATE_UNLOAD]({commit}) {
+        commit(UNSET_PROFILE_UPDATING);
     },
 
     async [VIEWED_LOAD]({ commit }, params) {
@@ -36,6 +46,13 @@ const mutations = {
         state.profile = null;
     },
 
+    [SET_PROFILE_UPDATING](state, profile) {
+        state.profileUpdating = profile;
+    },
+    [UNSET_PROFILE_UPDATING](state) {
+        state.profileUpdating = null;
+    },
+
     [SET_VIEWED](state, viewed) {
         state.viewed = viewed;
     },
@@ -47,6 +64,9 @@ const mutations = {
 const getters = {
     getProfile() {
         return state.profile;
+    },
+    getProfileUpdating() {
+        return state.profileUpdating;
     },
     getViewed() {
         return state.viewed;

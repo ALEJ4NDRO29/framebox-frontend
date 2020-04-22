@@ -70,6 +70,9 @@ export const Profile = {
     },
     getViewed(params) {
         return ApiService.query('/profile/me/viewed', params);
+    },
+    updateCurrent(profile) {
+        return ApiService.put('/profile/me', profile);
     }
 }
 

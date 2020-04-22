@@ -1,22 +1,29 @@
 <template>
   <div v-if="profile">
     <div>
-      <span>{{$t('karma')}} {{profile.karma}}</span>
+      <b>{{$t('karma')}}: </b>
+      <span>{{profile.karma}}</span>
     </div>
 
     <div v-if="profile.name">
-      <span>{{$t('name')}} {{profile.name}}</span>
+      <b>{{$t('name')}}: </b>
+      <span>{{profile.name}}</span>
     </div>
 
     <div v-if="profile.website">
-      <span>{{$t('website')}} {{profile.website}}</span>
+      <b>{{$t('website')}}: </b>
+      <a target="_blank" :href="profile.website">{{profile.website}}</a>
+    </div>
+
+    <div v-if="profile.status">
+      <b>{{$t('status')}}: </b>
+      <span>{{profile.status}}</span>
     </div>
 
     <div v-if="profile.bio">
-      <span>{{$t('bio')}} {{profile.bio}}</span>
+      <b>{{$t('bio')}}: </b>
+      <span>{{profile.bio}}</span>
     </div>
-
-    <!-- TOOD: viewed_content -->
   </div>
 </template>
 

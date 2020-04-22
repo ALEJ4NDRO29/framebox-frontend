@@ -1,6 +1,10 @@
 <template>
   <div v-if="nickname">
-    <b-button :to="{name:'Home'}" size="sm" variant="framebox-primary">{{$t('edit_profile')}}</b-button>
+    <b-button
+      :to="{name:'ProfileUpdate', params : {nickname}}"
+      size="sm"
+      variant="framebox-primary"
+    >{{$t('edit_profile')}}</b-button>
   </div>
 </template>
 
