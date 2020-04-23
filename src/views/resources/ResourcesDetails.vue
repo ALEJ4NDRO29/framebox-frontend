@@ -35,7 +35,7 @@ export default {
   computed: {
     ...mapGetters({
       resource: "getResourceDetails",
-      currentUser: 'getCurrentUser',
+      currentUser: "getCurrentUser"
     })
   },
   async mounted() {
@@ -43,7 +43,7 @@ export default {
       var params = {
         slug: this.$route.params.slug,
         userLogged: this.currentUser !== null
-      }
+      };
       await this.$store.dispatch(RESOURCES_DETAILS_LOAD, params);
     } catch (e) {
       this.error = "resource_not_found";

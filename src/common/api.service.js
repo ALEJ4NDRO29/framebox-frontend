@@ -47,7 +47,7 @@ export const ApiService = {
     },
 
     delete(resource, data) {
-        return Vue.axios.delete(resource, {data});
+        return Vue.axios.delete(resource, { data });
     }
 
 }
@@ -83,8 +83,17 @@ export const Resource = {
     getDetails(slug) {
         return ApiService.get(`/resource/slug/${slug}`);
     },
+    getAverage(slug) {
+        return ApiService.get(`/review/resource/${slug}/rate`);
+    },
+    getReviews(slug, params) {
+        return ApiService.query(`/review/resource/${slug}`, params);
+    },
+    getMyReview(slug) {
+        return ApiService.get(`/review/me/resource/${slug}`);
+    },
     isViewed(slug) {
-        return ApiService.get(`/profile/me/viewed/${slug}`)
+        return ApiService.get(`/profile/me/viewed/${slug}`);
     },
     setViewed(slug) {
         return ApiService.post('/profile/me/viewed', { resource: { slug } });

@@ -8,21 +8,33 @@
           :alt="`${resource.resource.title}-image`"
         />
 
-        <!-- VIEWED -->
-        <b-button :disabled="loading" @click="setViewed()" v-if="isViewed" block>
-          <span v-if="currentUser !== null && isViewed.viewed">
-            <!-- Viewed -->
-            {{formatDate(isViewed.viewed.createdAt)}}
-            <br />
-            <font-awesome-icon icon="eye" />
-          </span>
-          <span v-else>
-            <!-- Not viewed -->
-            <font-awesome-icon icon="eye-slash" />
-          </span>
-        </b-button>
+        <b-row>
+          <b-col>
+            <!-- VIEWED -->
+            <b-button
+              :disabled="loading"
+              @click="setViewed()"
+              v-if="currentUser === null || isViewed"
+              block
+            >
+              <span v-if="currentUser !== null && isViewed.viewed">
+                <!-- Viewed -->
+                {{formatDate(isViewed.viewed.createdAt)}}
+                <br />
+                <font-awesome-icon icon="eye" />
+              </span>
+              <span v-else>
+                <!-- Not viewed -->
+                <font-awesome-icon icon="eye-slash" />
+              </span>
+            </b-button>
+          </b-col>
+          <b-col v-if="rateAverage">
+            {{$t('average')}}: {{rateAverage.rate.value}} <br>
+            {{$t('total')}}: {{rateAverage.rate.count}}
+          </b-col>
+        </b-row>
       </b-col>
-
       <b-col cols="12" sm="9">
         <div>
           <h1>
@@ -37,6 +49,8 @@
         >{{formatDate(resource.resource.releasedAt)}}</div>
 
         <div v-if="resource.resource.description">{{resource.resource.description}}</div>
+
+        <reviews-resource-list />
       </b-col>
     </b-row>
   </div>
@@ -45,6 +59,7 @@
 <script>
 import { mapGetters } from "vuex";
 import ResourceIconType from "@/components/resource/ResourceIconType";
+import ReviewsResourceList from "@/components/reviews/ReviewsResourceList";
 import {
   RESOURCES_REMOVE_VIEWED,
   RESOURCES_ADD_VIEWED
@@ -53,7 +68,8 @@ import {
 export default {
   name: "ResourceDetailsHeader",
   components: {
-    ResourceIconType
+    ResourceIconType,
+    ReviewsResourceList
   },
   data() {
     return {
@@ -65,7 +81,8 @@ export default {
     ...mapGetters({
       currentUser: "getCurrentUser",
       resource: "getResourceDetails",
-      isViewed: "isResourceViewed"
+      isViewed: "isResourceViewed",
+      rateAverage: "getResourceRateAverage"
     })
   },
 

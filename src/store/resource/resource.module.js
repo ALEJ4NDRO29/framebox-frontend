@@ -6,7 +6,9 @@ import {
 import {
     SET_LATEST_RESOURCES, UNSET_LATEST_RESOURCES, SET_SEARCH_RESORCES,
     UNSET_SEARCH_RESORCES, SET_RESOURCES_DETAILS, UNSET_RESOURCES_DETAILS,
-    SET_RESOURCE_IS_VIEWED, UNSET_RESOURCE_IS_VIEWED
+    SET_RESOURCE_IS_VIEWED, UNSET_RESOURCE_IS_VIEWED, SET_RESOURCE_RATE_AVERAGE,
+    UNSET_RESOURCE_RATE_AVERAGE, SET_RESOURCE_REVIEWS, UNSET_RESOURCE_REVIEWS,
+    SET_RESOURCE_MY_REVIEW, UNSET_RESOURCE_MY_REVIEW
 } from "../mutations.types";
 import { Resource } from "../../common/api.service";
 
@@ -14,7 +16,10 @@ const state = {
     resourceDetails: null,
     isViewed: null,
     latestResources: null,
-    searchResult: null
+    searchResult: null,
+    resourceRateAverage: null,
+    reviews: null,
+    myReview: null
 }
 
 const actions = {
@@ -42,14 +47,32 @@ const actions = {
         commit(SET_RESOURCES_DETAILS, resource);
 
         if (params.userLogged) {
-            var res2 = await Resource.isViewed(params.slug);
-            var isViewed = res2.data;
-            commit(SET_RESOURCE_IS_VIEWED, isViewed);
+            Resource.isViewed(params.slug).then((res) => {
+                var isViewed = res.data;
+                commit(SET_RESOURCE_IS_VIEWED, isViewed);
+            });
+            Resource.getMyReview(params.slug).then((res) => {
+                var myReview = res.data;
+                commit(SET_RESOURCE_MY_REVIEW, myReview);
+            })
         }
+
+        Resource.getAverage(params.slug).then((res) => {
+            var resourceRateAverage = res.data;
+            commit(SET_RESOURCE_RATE_AVERAGE, resourceRateAverage);
+        });
+
+        Resource.getReviews(params.slug).then((res) => {
+            var reviews = res.data;
+            commit(SET_RESOURCE_REVIEWS, reviews);
+        });
     },
     [RESOURCES_DETAILS_UNLOAD]({ commit }) {
         commit(UNSET_RESOURCES_DETAILS);
         commit(UNSET_RESOURCE_IS_VIEWED);
+        commit(UNSET_RESOURCE_RATE_AVERAGE);
+        commit(UNSET_RESOURCE_REVIEWS);
+        commit(UNSET_RESOURCE_MY_REVIEW);
     },
 
     async [RESOURCES_ADD_VIEWED]({ commit }, slug) {
@@ -91,6 +114,27 @@ const mutations = {
     },
     [UNSET_RESOURCE_IS_VIEWED](state) {
         state.isViewed = null;
+    },
+
+    [SET_RESOURCE_RATE_AVERAGE](state, resourceRateAverage) {
+        state.resourceRateAverage = resourceRateAverage;
+    },
+    [UNSET_RESOURCE_RATE_AVERAGE](state) {
+        state.resourceRateAverage = null;
+    },
+
+    [SET_RESOURCE_REVIEWS](state, reviews) {
+        state.reviews = reviews;
+    },
+    [UNSET_RESOURCE_REVIEWS](state) {
+        state.reviews;
+    },
+
+    [SET_RESOURCE_MY_REVIEW](state, review) {
+        state.myReview = review;
+    },
+    [UNSET_RESOURCE_MY_REVIEW](state) {
+        state.myReview = null;
     }
 }
 
@@ -104,8 +148,17 @@ const getters = {
     getResourceDetails() {
         return state.resourceDetails;
     },
+    getResourceRateAverage() {
+        return state.resourceRateAverage;
+    },
     isResourceViewed() {
         return state.isViewed;
+    },
+    getResourceReviews() {
+        return state.reviews;
+    },
+    getResourceMyReview() {
+        return state.myReview;
     }
 }
 
