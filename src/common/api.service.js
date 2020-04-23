@@ -46,8 +46,8 @@ export const ApiService = {
         return Vue.axios.put(resource, data);
     },
 
-    delete(resource) {
-        return Vue.axios.delete(resource);
+    delete(resource, data) {
+        return Vue.axios.delete(resource, {data});
     }
 
 }
@@ -85,6 +85,12 @@ export const Resource = {
     },
     isViewed(slug) {
         return ApiService.get(`/profile/me/viewed/${slug}`)
+    },
+    setViewed(slug) {
+        return ApiService.post('/profile/me/viewed', { resource: { slug } });
+    },
+    unsetViewed(slug) {
+        return ApiService.delete('/profile/me/viewed', { resource: { slug } });
     }
 }
 

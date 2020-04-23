@@ -2,8 +2,10 @@
   <b-card>
     <b-card-text>
       <h2>
-        <resource-icon-type :type="review.resource.type.name" />
-        {{review.resource.title}}
+        <resource-icon-type class="icon" :type="review.resource.type.name" />
+        <router-link
+          :to="{name: 'ResourcesDetails', params: {slug: review.resource.slug}}"
+        >{{review.resource.title}}</router-link>
       </h2>
 
       <div>
@@ -44,3 +46,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.icon {
+  margin-right: 10px;
+}
+</style>

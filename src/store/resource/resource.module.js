@@ -1,5 +1,13 @@
-import { RESOURCES_LATEST_LOAD, RESOURCES_LATEST_UNLOAD, RESOURCES_SEARCH, RESOURCES_SEARCH_UNLOAD, RESOURCES_DETAILS_LOAD, RESOURCES_DETAILS_UNLOAD } from "../actions.types";
-import { SET_LATEST_RESOURCES, UNSET_LATEST_RESOURCES, SET_SEARCH_RESORCES, UNSET_SEARCH_RESORCES, SET_RESOURCES_DETAILS, UNSET_RESOURCES_DETAILS, SET_RESOURCE_IS_VIEWED, UNSET_RESOURCE_IS_VIEWED } from "../mutations.types";
+import {
+    RESOURCES_LATEST_LOAD, RESOURCES_LATEST_UNLOAD, RESOURCES_SEARCH,
+    RESOURCES_SEARCH_UNLOAD, RESOURCES_DETAILS_LOAD, RESOURCES_DETAILS_UNLOAD, RESOURCES_ADD_VIEWED, RESOURCES_REMOVE_VIEWED
+} from "../actions.types";
+
+import {
+    SET_LATEST_RESOURCES, UNSET_LATEST_RESOURCES, SET_SEARCH_RESORCES,
+    UNSET_SEARCH_RESORCES, SET_RESOURCES_DETAILS, UNSET_RESOURCES_DETAILS,
+    SET_RESOURCE_IS_VIEWED, UNSET_RESOURCE_IS_VIEWED
+} from "../mutations.types";
 import { Resource } from "../../common/api.service";
 
 const state = {
@@ -28,18 +36,31 @@ const actions = {
         commit(UNSET_SEARCH_RESORCES)
     },
 
-    async [RESOURCES_DETAILS_LOAD]({ commit }, slug) {
-        var res = await Resource.getDetails(slug);
+    async [RESOURCES_DETAILS_LOAD]({ commit }, params) {
+        var res = await Resource.getDetails(params.slug);
         var resource = res.data;
         commit(SET_RESOURCES_DETAILS, resource);
 
-        var res2 = await Resource.isViewed(slug);
-        var isViewed = res2.data;
-        commit(SET_RESOURCE_IS_VIEWED, isViewed);
+        if (params.userLogged) {
+            var res2 = await Resource.isViewed(params.slug);
+            var isViewed = res2.data;
+            commit(SET_RESOURCE_IS_VIEWED, isViewed);
+        }
     },
     [RESOURCES_DETAILS_UNLOAD]({ commit }) {
         commit(UNSET_RESOURCES_DETAILS);
         commit(UNSET_RESOURCE_IS_VIEWED);
+    },
+
+    async [RESOURCES_ADD_VIEWED]({ commit }, slug) {
+        var res = await Resource.setViewed(slug);
+        var viewed = res.data;
+        commit(SET_RESOURCE_IS_VIEWED, viewed)
+    },
+
+    async [RESOURCES_REMOVE_VIEWED]({ commit }, slug) {
+        await Resource.unsetViewed(slug);
+        commit(SET_RESOURCE_IS_VIEWED, {})
     }
 }
 
@@ -66,7 +87,7 @@ const mutations = {
     },
 
     [SET_RESOURCE_IS_VIEWED](state, isViewed) {
-       state.isViewed = isViewed; 
+        state.isViewed = isViewed;
     },
     [UNSET_RESOURCE_IS_VIEWED](state) {
         state.isViewed = null;
@@ -84,7 +105,7 @@ const getters = {
         return state.resourceDetails;
     },
     isResourceViewed() {
-        return state.isViewed;        
+        return state.isViewed;
     }
 }
 

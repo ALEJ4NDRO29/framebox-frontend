@@ -8,9 +8,18 @@
           :alt="`${resource.resource.title}-image`"
         />
 
-        <b-button block>
-          <span v-if="isViewed.viewed">YES</span>
-          <span v-else>NO</span>
+        <!-- VIEWED -->
+        <b-button :disabled="loading" @click="setViewed()" v-if="isViewed" block>
+          <span v-if="currentUser !== null && isViewed.viewed">
+            <!-- Viewed -->
+            {{formatDate(isViewed.viewed.createdAt)}}
+            <br />
+            <font-awesome-icon icon="eye" />
+          </span>
+          <span v-else>
+            <!-- Not viewed -->
+            <font-awesome-icon icon="eye-slash" />
+          </span>
         </b-button>
       </b-col>
 
@@ -36,14 +45,25 @@
 <script>
 import { mapGetters } from "vuex";
 import ResourceIconType from "@/components/resource/ResourceIconType";
+import {
+  RESOURCES_REMOVE_VIEWED,
+  RESOURCES_ADD_VIEWED
+} from "@/store/actions.types";
+
 export default {
   name: "ResourceDetailsHeader",
   components: {
     ResourceIconType
   },
+  data() {
+    return {
+      loading: false
+    };
+  },
 
   computed: {
     ...mapGetters({
+      currentUser: "getCurrentUser",
       resource: "getResourceDetails",
       isViewed: "isResourceViewed"
     })
@@ -57,9 +77,31 @@ export default {
         return require("../../assets/default-movie.jpg");
       }
     },
+
     formatDate(dateStr) {
       var date = new Date(dateStr);
       return date.toLocaleDateString();
+    },
+
+    async setViewed() {
+      try {
+        this.loading = true;
+        if (this.currentUser === null) {
+          this.$router.push({ name: "Login" });
+        } else if (this.isViewed.viewed) {
+          await this.$store.dispatch(
+            RESOURCES_REMOVE_VIEWED,
+            this.resource.resource.slug
+          );
+        } else {
+          await this.$store.dispatch(
+            RESOURCES_ADD_VIEWED,
+            this.resource.resource.slug
+          );
+        }
+      } finally {
+        this.loading = false;
+      }
     }
   }
 };
@@ -68,5 +110,8 @@ export default {
 <style scoped>
 .date {
   margin-bottom: 25px;
+}
+img {
+  margin-bottom: 10px;
 }
 </style>
