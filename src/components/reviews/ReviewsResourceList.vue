@@ -1,18 +1,8 @@
 <template>
   <div>
     <h1>Reviews</h1>
-    
-    <p>{{$t('my_review')}} </p>
-    <div v-if="myReview && myReview.review">
-      <pre>
-        {{myReview}}
-      </pre>
-    </div>
-    <div v-else>
-      create review
-    </div>
 
-
+    <resource-user-review @refresh="updateReviews" />
 
     <div v-if="reviews && reviews.reviews.docs.length > 0">
       <review-preview v-for="(review, key) in reviews.reviews.docs" :review="review" :key="key" />
@@ -28,24 +18,26 @@
       <!-- No hay reviews -->
       {{$t('no_reviews')}}
     </div>
-
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import { BOOTSTRAP_PAGINATION_CLASSES } from "@/common/constants";
+import { RESOURCES_REVIEW_PAGINATE, RESOURCES_AVERAGE_LOAD } from "@/store/actions.types";
 import ReviewPreview from "@/components/reviews/ReviewPreview";
+import ResourceUserReview from "@/components/resource/ResourceUserReview";
 
 export default {
   name: "ResourceReviewsList",
   components: {
-    ReviewPreview
+    ReviewPreview,
+    ResourceUserReview
   },
   computed: {
     ...mapGetters({
-      reviews: "getResourceReviews",
-      myReview: "getResourceMyReview"
+      resource: "getResourceDetails",
+      reviews: "getResourceReviews"
     })
   },
 
@@ -58,7 +50,17 @@ export default {
 
   methods: {
     change() {
-      console.log("change page");
+      var data = {
+        slug: this.resource.resource.slug,
+        params: {
+          page: this.currentPage
+        }
+      };
+      this.$store.dispatch(RESOURCES_REVIEW_PAGINATE, data);
+    },
+    updateReviews() {
+      this.change();
+      this.$store.dispatch(RESOURCES_AVERAGE_LOAD, this.resource.resource.slug);
     }
   }
 };

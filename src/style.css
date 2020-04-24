@@ -81,3 +81,12 @@ a:hover {
     margin-top: 25px;
     margin-bottom: 25px;
 }
+
+hr {
+    border: 0.5px solid var(--primary-color);
+    width: 95%;
+}
+
+select>option {
+    color: black;
+}

@@ -1,6 +1,9 @@
 import {
     RESOURCES_LATEST_LOAD, RESOURCES_LATEST_UNLOAD, RESOURCES_SEARCH,
-    RESOURCES_SEARCH_UNLOAD, RESOURCES_DETAILS_LOAD, RESOURCES_DETAILS_UNLOAD, RESOURCES_ADD_VIEWED, RESOURCES_REMOVE_VIEWED
+    RESOURCES_SEARCH_UNLOAD, RESOURCES_DETAILS_LOAD, RESOURCES_DETAILS_UNLOAD,
+    RESOURCES_ADD_VIEWED, RESOURCES_REMOVE_VIEWED, RESOURCES_REVIEW_PAGINATE,
+    RESOURCE_USER_REVIEW_UPDATE, RESOURCE_USER_REVIEW_REMOVE, RESOURCE_USER_REVIEW_CREATE,
+    RESOURCES_AVERAGE_LOAD
 } from "../actions.types";
 
 import {
@@ -10,7 +13,7 @@ import {
     UNSET_RESOURCE_RATE_AVERAGE, SET_RESOURCE_REVIEWS, UNSET_RESOURCE_REVIEWS,
     SET_RESOURCE_MY_REVIEW, UNSET_RESOURCE_MY_REVIEW
 } from "../mutations.types";
-import { Resource } from "../../common/api.service";
+import { Resource, Review } from "../../common/api.service";
 
 const state = {
     resourceDetails: null,
@@ -67,6 +70,12 @@ const actions = {
             commit(SET_RESOURCE_REVIEWS, reviews);
         });
     },
+    [RESOURCES_AVERAGE_LOAD]({ commit }, slug) {
+        Resource.getAverage(slug).then((res) => {
+            var resourceRateAverage = res.data;
+            commit(SET_RESOURCE_RATE_AVERAGE, resourceRateAverage);
+        });
+    },
     [RESOURCES_DETAILS_UNLOAD]({ commit }) {
         commit(UNSET_RESOURCES_DETAILS);
         commit(UNSET_RESOURCE_IS_VIEWED);
@@ -84,6 +93,27 @@ const actions = {
     async [RESOURCES_REMOVE_VIEWED]({ commit }, slug) {
         await Resource.unsetViewed(slug);
         commit(SET_RESOURCE_IS_VIEWED, {})
+    },
+
+    async [RESOURCES_REVIEW_PAGINATE]({ commit }, data) {
+        var res = await Resource.getReviews(data.slug, data.params);
+        var reviews = res.data;
+        commit(SET_RESOURCE_REVIEWS, reviews);
+    },
+
+    async [RESOURCE_USER_REVIEW_CREATE]({ commit }, review) {
+        var res = await Review.create(review);
+        var createdReview = res.data;
+        commit(SET_RESOURCE_MY_REVIEW, createdReview);
+    }, 
+    async [RESOURCE_USER_REVIEW_UPDATE]({ commit }, review) {
+        var res = await Review.update(review);
+        var newReview = res.data;
+        commit(SET_RESOURCE_MY_REVIEW, newReview);
+    },
+    async [RESOURCE_USER_REVIEW_REMOVE]({ commit }, review) {
+        await Review.remove(review);
+        commit(SET_RESOURCE_MY_REVIEW, {review: null});
     }
 }
 

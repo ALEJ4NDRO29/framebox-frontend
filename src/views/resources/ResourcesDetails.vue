@@ -22,7 +22,8 @@ export default {
    * COMPROBAR SI VISTO (USUARIO LOGUEADO)
    * CARGAR REVIEW DEL USUARIO (USUARIO LOGUEADO)
    * CARGAR REVIEWS
-   */
+   * ADMIN OPTIONS
+   */ 
   name: "ResourcesDetails",
   components: {
     ResourceDetailsHeader

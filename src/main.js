@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import {
   faStar, faMusic, faGamepad, faCouch, faFilm,
-  faSearch, faEye, faEyeSlash
+  faSearch, faEye, faEyeSlash, faEdit
 } from '@fortawesome/free-solid-svg-icons'
 
 Vue.config.productionTip = false
@@ -31,7 +31,7 @@ Vue.component('v-pagination', vPagination);
  */
 library.add([
   faStar, faFilm, faMusic, faGamepad, faCouch,
-  faSearch, faEye, faEyeSlash]);
+  faSearch, faEye, faEyeSlash, faEdit]);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 ApiService.init();

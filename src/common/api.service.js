@@ -109,5 +109,14 @@ export const Review = {
     },
     fromUser(nickname, page = 1) {
         return ApiService.query(`/review/nickname/${nickname}`, { page })
+    },
+    create(review) {
+        return ApiService.post('/review', { review });
+    },
+    update(review) {
+        return ApiService.put(`/review/id/${review.id}`, { review });
+    },
+    remove(review) {
+        return ApiService.delete(`/review/id/${review.id}`);
     }
 }
