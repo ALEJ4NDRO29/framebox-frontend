@@ -1,5 +1,5 @@
 <template>
-  <div v-if="reviews">
+  <div v-if="reviews && reviews.docs.length > 0">
     <review-preview v-for="(review, key) in reviews.docs" :key="key" :review="review" />
 
     <v-pagination
@@ -8,6 +8,9 @@
       :page-count="reviews.totalPages"
       :classes="BOOTSTRAP_PAGINATION_CLASSES"
     ></v-pagination>
+  </div>
+  <div v-else-if="reviews">
+    {{$t('no_reviews')}}
   </div>
   <div v-else>
     <b-spinner variant="light" label="Loading..."></b-spinner>

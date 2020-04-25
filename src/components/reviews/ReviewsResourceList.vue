@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="reviews">
     <h1>Reviews</h1>
 
     <resource-user-review @refresh="updateReviews" />
@@ -65,3 +65,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.reviews{
+  margin-top: 50px;
+}
+</style>

@@ -20,8 +20,12 @@ body, .bg-default {
     background-color: var(--foreground-color);
 }
 
-body * {
+body /* * */ {
     color: var(--primary-color);
+}
+
+.b-rating-star {
+    color: #d65a31;
 }
 
 a {

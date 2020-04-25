@@ -8,6 +8,15 @@
           :alt="`${resource.resource.title}-image`"
         />
 
+        <!-- IF ADMIN UPDATE BTN -->
+        <b-row class="btn-update" v-if="currentUser && currentUser.isAdmin">
+          <b-button
+            :to="{name: 'ResourcesConfigure', params: {slug: resource.resource.slug}}"
+            variant="framebox-primary"
+            block
+          >{{$t('update')}}</b-button>
+        </b-row>
+
         <b-row>
           <b-col>
             <!-- VIEWED -->
@@ -17,6 +26,7 @@
               v-if="currentUser === null || isViewed"
               block
             >
+              <!-- FIXME : SPAN IN BUTTON -->
               <span v-if="currentUser !== null && isViewed.viewed">
                 <!-- Viewed -->
                 {{formatDate(isViewed.viewed.createdAt)}}
@@ -30,7 +40,8 @@
             </b-button>
           </b-col>
           <b-col v-if="rateAverage">
-            {{$t('average')}}: {{rateAverage.rate.value}} <br>
+            {{$t('average')}}: {{rateAverage.rate.value}}
+            <br />
             {{$t('total')}}: {{rateAverage.rate.count}}
           </b-col>
         </b-row>
@@ -125,7 +136,8 @@ export default {
 </script>
 
 <style scoped>
-.date {
+.date,
+.btn-update {
   margin-bottom: 25px;
 }
 img {

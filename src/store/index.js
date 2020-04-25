@@ -5,6 +5,7 @@ import layout from './layout/layout.module';
 import profile from './profile/profile.module';
 import review from './review/review.module';
 import resource from './resource/resource.module';
+import resourceAdmin from './resource/resourceAdmin.module';
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     layout,
     profile,
     resource,
+    resourceAdmin,
     review
   }
 })

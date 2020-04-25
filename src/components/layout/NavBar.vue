@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" class="gb-foreground">
+    <b-navbar toggleable="lg" type="dark" v-bind:class="{'bg-admin': currentUser && currentUser.isAdmin}" class="gb-foreground">
       <b-container>
         <b-navbar-brand to="/">Framebox</b-navbar-brand>
 
@@ -26,6 +26,7 @@
 import LangSelector from "@/components/layout/LangSelector";
 import NavBarAuth from "@/components/layout/NavBarAuth";
 import NavBarRoutes from "@/components/layout/NavBarRoutes";
+import { mapGetters } from "vuex";
 
 export default {
   name: "NavBar",
@@ -33,6 +34,17 @@ export default {
     LangSelector,
     NavBarAuth,
     NavBarRoutes
+  },
+  computed: {
+    ...mapGetters({
+      currentUser: "getCurrentUser"
+    })
   }
 };
 </script>
+
+<style scoped>
+.bg-admin {
+  background-color: #d65a31;
+}
+</style>

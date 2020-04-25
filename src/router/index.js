@@ -6,7 +6,7 @@ import Home from '../views/home/Home.vue'
 import { Jwt } from "../common/jwt";
 Vue.use(VueRouter)
 
-const loginRequired = ['ProfileViewed', 'ProfileUpdate'];
+const loginRequired = ['ProfileViewed', 'ProfileUpdate', 'ResourcesConfigure', 'ResourcesCreate'];
 const loginNotRequired = ['Login', 'Register'];
 
 const routes = [
@@ -29,6 +29,16 @@ const routes = [
     path: '/resources/:slug',
     name: 'ResourcesDetails',
     component: () => import('../views/resources/ResourcesDetails')
+  },
+  {
+    path: '/create/resources',
+    name: 'ResourcesCreate',
+    component: () => import('../views/resources/ResourcesCreate')
+  },
+  {
+    path: '/resources/:slug/configure',
+    name: 'ResourcesConfigure',
+    component: () => import('../views/resources/ResourcesConfigure')
   },
   {
     path: '/auth/login',

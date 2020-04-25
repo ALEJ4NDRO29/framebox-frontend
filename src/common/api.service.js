@@ -80,6 +80,9 @@ export const Resource = {
     get(params) {
         return ApiService.query('/resource', params);
     },
+    create(resource) {
+        return ApiService.post('/resource', {resource});
+    },
     getDetails(slug) {
         return ApiService.get(`/resource/slug/${slug}`);
     },
@@ -100,6 +103,9 @@ export const Resource = {
     },
     unsetViewed(slug) {
         return ApiService.delete('/profile/me/viewed', { resource: { slug } });
+    },
+    getTypes() {
+        return ApiService.get('/resource/types');
     }
 }
 
