@@ -83,6 +83,9 @@ export const Resource = {
     create(resource) {
         return ApiService.post('/resource', {resource});
     },
+    update(slug, resource) {
+        return ApiService.put(`/resource/slug/${slug}`, {resource});
+    },
     getDetails(slug) {
         return ApiService.get(`/resource/slug/${slug}`);
     },

@@ -28,6 +28,10 @@ body /* * */ {
     color: #d65a31;
 }
 
+.pagination {
+    color: white;
+}
+
 a {
     color: var(--secondary-color);
 }

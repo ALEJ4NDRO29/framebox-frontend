@@ -16,14 +16,6 @@ import { mapGetters } from "vuex";
 import ResourceDetailsHeader from "@/components/resource/ResourceDetailsHeader";
 
 export default {
-  /**
-   * TODO:
-   * CARGAR DETALLES
-   * COMPROBAR SI VISTO (USUARIO LOGUEADO)
-   * CARGAR REVIEW DEL USUARIO (USUARIO LOGUEADO)
-   * CARGAR REVIEWS
-   * ADMIN OPTIONS
-   */ 
   name: "ResourcesDetails",
   components: {
     ResourceDetailsHeader

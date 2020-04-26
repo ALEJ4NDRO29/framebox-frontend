@@ -8,6 +8,7 @@
           v-model="resource.title"
           type="text"
           :placeholder="$t('title')"
+          autocomplete="off"
           required
         />
       </b-form-group>
@@ -31,6 +32,7 @@
         <b-form-textarea
           id="input-description"
           v-model="resource.description"
+          rows="6"
           type="text"
           :placeholder="$t('description')"
         />
@@ -42,6 +44,7 @@
           id="input-image-url"
           v-model="resource.imageUrl"
           type="text"
+          autocomplete="off"
           :placeholder="$t('image_url')"
         />
       </b-form-group>
@@ -52,6 +55,7 @@
           id="input-company"
           v-model="resource.company"
           type="text"
+          autocomplete="off"
           :placeholder="$t('company')"
         />
       </b-form-group>
@@ -67,7 +71,6 @@
       </b-form-group>
       <b-button type="submit" variant="framebox-primary" block> {{$t('confirm')}} </b-button>
     </b-form>
-    <pre>{{resource}}</pre>
   </div>
 </template>
 
@@ -79,22 +82,33 @@ import {
 } from "@/store/actions.types";
 export default {
   name: "ResourceForm",
+  props: {
+    resourceUpdate : Object
+  },
+
   computed: {
     ...mapGetters({
       types: "getResourceTypes"
     })
   },
+
   data() {
     return {
       resource: {}
     };
   },
+  
   mounted() {
     this.$store.dispatch(RESOURCE_ADMIN_LOAD);
+    if(typeof this.resourceUpdate !== "undefined") {
+      this.resource = Object.assign({}, this.resourceUpdate);
+    }
   },
+  
   beforeDestroy() {
     this.$store.dispatch(RESOURCE_ADMIN_UNLOAD);
   },
+  
   methods: {
     onSubmit(ev) {
       ev.preventDefault();

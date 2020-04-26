@@ -33,7 +33,6 @@ export default {
     async submit(resourceCreate) {
       var res = await Resource.create(resourceCreate);
       var created = res.data;
-      console.log(created);
       
       this.$router.push({
         name: "ResourcesDetails",
