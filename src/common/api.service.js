@@ -81,10 +81,10 @@ export const Resource = {
         return ApiService.query('/resource', params);
     },
     create(resource) {
-        return ApiService.post('/resource', {resource});
+        return ApiService.post('/resource', { resource });
     },
     update(slug, resource) {
-        return ApiService.put(`/resource/slug/${slug}`, {resource});
+        return ApiService.put(`/resource/slug/${slug}`, { resource });
     },
     remove(slug) {
         return ApiService.delete(`/resource/slug/${slug}`);
@@ -130,5 +130,23 @@ export const Review = {
     },
     remove(review) {
         return ApiService.delete(`/review/id/${review.id}`);
+    }
+}
+
+export const List = {
+    get(params) {
+        return ApiService.query('/list/me', params);
+    },
+    create(list) {
+        return ApiService.post('/list/me', { list });
+    },
+    update(slug, list) {
+        return ApiService.put(`/list/update/${slug}`, { list });
+    },
+    remove(slug){
+        return ApiService.delete(`/list/remove/${slug}`);
+    },
+    getDetails(slug) {
+        return ApiService.get(`/list/get/${slug}`);
     }
 }
