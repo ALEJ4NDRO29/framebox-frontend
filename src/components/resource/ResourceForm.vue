@@ -15,6 +15,7 @@
 
       <!-- TYPE -->
       <b-form-group id="input-group-type" :label="$t('type')" label-for="input-type" v-if="types">
+        <!-- FIXME : UPDATE NO CARGA -->
         <b-form-select
           id="input-type"
           v-model="resource.type"

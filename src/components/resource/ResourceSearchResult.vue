@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="searchResult">
-      <div v-if="searchResult && searchResult.docs.length === 0">No results</div>
+      <div v-if="searchResult && searchResult.docs.length === 0">{{$t('no_results')}}</div>
       <div v-else>
         <resource-preview
           v-for="(resource, key) in searchResult.docs"

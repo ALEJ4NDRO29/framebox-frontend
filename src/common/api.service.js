@@ -86,6 +86,9 @@ export const Resource = {
     update(slug, resource) {
         return ApiService.put(`/resource/slug/${slug}`, {resource});
     },
+    remove(slug) {
+        return ApiService.delete(`/resource/slug/${slug}`);
+    },
     getDetails(slug) {
         return ApiService.get(`/resource/slug/${slug}`);
     },

@@ -5,6 +5,7 @@
       <b-col cols="12" lg="6" offset-lg="3">
         <h1>{{$t('update_resource')}}</h1>
         <resource-form :resourceUpdate="resource.resource" @submit="submit" />
+        <b-button class="remove" @click="remove" variant="outline-danger">{{$t(removeText)}}</b-button>
       </b-col>
     </b-row>
   </div>
@@ -27,7 +28,9 @@ export default {
 
   data() {
     return {
-      error: false
+      error: false,
+      removeText: "remove",
+      clickAgainToConfirmRemove: false
     };
   },
 
@@ -58,14 +61,35 @@ export default {
   methods: {
     async submit(resourceUpdate) {
       var res = await Resource.update(resourceUpdate.slug, resourceUpdate);
-      
+
       var updated = res.data;
-      
+
       this.$router.push({
         name: "ResourcesDetails",
         params: { slug: updated.resource.slug }
+      });
+    },
+    async remove() {
+      if (!this.clickAgainToConfirmRemove) {
+        this.clickAgainToConfirmRemove = true;
+        this.removeText = "click_again_to_remove";
+        setTimeout(() => {
+          this.clickAgainToConfirmRemove = false;
+          this.removeText = "remove";
+        }, 2000);
+        return;
+      }
+
+      await Resource.remove(this.resource.resource.slug);
+      this.$router.push({
+        name: "Resources"
       });
     }
   }
 };
 </script>
+<style scoped>
+.remove {
+  margin-top: 25px;
+}
+</style>
