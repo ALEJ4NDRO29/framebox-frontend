@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-form @submit="onSubmit">
+    <h2>{{$t('send_suggestion')}}</h2>
+    <b-form @submit="submit">
       <!-- TITLE -->
       <b-form-group id="input-group-title" :label="$t('title')" label-for="input-title">
         <b-form-input
@@ -15,7 +16,6 @@
 
       <!-- TYPE -->
       <b-form-group id="input-group-type" :label="$t('type')" label-for="input-type" v-if="types">
-        <!-- FIXME : UPDATE NO CARGA -->
         <b-form-select
           id="input-type"
           v-model="resource.type"
@@ -69,26 +69,23 @@
       >
         <b-form-datepicker id="input-released-at" v-model="resource.releasedAt" class="mb-2"></b-form-datepicker>
       </b-form-group>
-      <b-button type="submit" variant="framebox-primary" block> {{$t('confirm')}} </b-button>
+      <b-button type="submit" variant="framebox-primary" block>{{$t('confirm')}}</b-button>
     </b-form>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import {
-  RESOURCE_ADMIN_LOAD,
-  RESOURCE_ADMIN_UNLOAD
+  SUGGESTION_FORM_LOAD,
+  SUGGESTION_FORM_UNLOAD
 } from "@/store/actions.types";
+import { mapGetters } from "vuex";
+import { Suggestion } from "../../common/api.service";
 export default {
-  name: "ResourceForm",
-  props: {
-    resourceUpdate : Object
-  },
-
+  name: "SuggestionForm",
   computed: {
     ...mapGetters({
-      types: "getResourceTypes"
+      types: "getSuggestionTypes"
     })
   },
 
@@ -97,22 +94,20 @@ export default {
       resource: {}
     };
   },
-  
+
   mounted() {
-    this.$store.dispatch(RESOURCE_ADMIN_LOAD);
-    if(typeof this.resourceUpdate !== "undefined") {
-      this.resource = Object.assign({}, this.resourceUpdate);
-    }
+    this.$store.dispatch(SUGGESTION_FORM_LOAD);
   },
-  
+
   beforeDestroy() {
-    this.$store.dispatch(RESOURCE_ADMIN_UNLOAD);
+    this.$store.dispatch(SUGGESTION_FORM_UNLOAD);
   },
-  
+
   methods: {
-    onSubmit(ev) {
+    async submit(ev) {
       ev.preventDefault();
-      this.$emit('submit', this.resource);
+      await Suggestion.create(this.resource);
+      this.$router.push({ name: "Suggestions" });
     }
   }
 };

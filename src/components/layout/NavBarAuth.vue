@@ -11,6 +11,9 @@
     <b-dropdown-item :to="{name: 'ProfileViewed'}">
       {{$t('viewed')}}
     </b-dropdown-item>
+    <b-dropdown-item :to="{name: 'Suggestions'}">
+      {{$t('suggestions')}}
+    </b-dropdown-item>
     <b-dropdown-item @click="logout()">{{$t('logout')}}</b-dropdown-item>
   </b-nav-item-dropdown>
 

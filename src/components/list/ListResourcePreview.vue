@@ -72,7 +72,9 @@ export default {
         }
       };
       await List.removeContent(this.list.list.slug, resource);
-
+      this.clickAgainToConfirmRemove = false;
+      this.removeText = "remove";
+      
       this.$emit("update");
     }
   }

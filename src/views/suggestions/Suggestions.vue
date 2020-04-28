@@ -1,0 +1,35 @@
+<template>
+  <div>
+    <h1>{{$t('suggestions')}}</h1>
+    <suggestion-list @pageUpdate="setPage"/>
+  </div>
+</template>
+
+<script>
+import {
+  SUGGESTION_LIST_UNLOAD,
+  SUGGESTION_LIST_LOAD
+} from "../../store/actions.types";
+import SuggestionList from "@/components/suggestion/SuggestionList";
+
+export default {
+  name: "Suggestions",
+  components: {
+    SuggestionList
+  },
+
+  mounted() {
+    this.$store.dispatch(SUGGESTION_LIST_LOAD, { limit: 5 });
+  },
+
+  beforeDestroy() {
+    this.$store.dispatch(SUGGESTION_LIST_UNLOAD);
+  },
+
+  methods: {
+    setPage(page) {
+      this.$store.dispatch(SUGGESTION_LIST_LOAD, { limit: 5, page });
+    }
+  }
+};
+</script>

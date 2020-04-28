@@ -13,7 +13,8 @@ const loginRequired = [
   'ResourcesCreate',
   'List',
   'ListsCreate',
-  'ListConfigure'
+  'ListConfigure',
+  'Suggestions'
 ];
 const loginNotRequired = ['Login', 'Register'];
 
@@ -96,6 +97,12 @@ const routes = [
     path: '/create/lists',
     name: 'ListsCreate',
     component: () => import('../views/list/ListCreate')
+  }, 
+  // SUGGESTIONS
+  {
+    path: '/suggestions',
+    name: 'Suggestions',
+    component: () => import('../views/suggestions/Suggestions')
   },
   {
     path: '*',

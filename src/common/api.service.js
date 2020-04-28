@@ -146,7 +146,7 @@ export const List = {
     update(slug, list) {
         return ApiService.put(`/list/update/${slug}`, { list });
     },
-    remove(slug){
+    remove(slug) {
         return ApiService.delete(`/list/remove/${slug}`);
     },
     getTitles() {
@@ -160,5 +160,23 @@ export const List = {
     },
     removeContent(listSlug, resource) {
         return ApiService.delete(`/list/content/${listSlug}`, resource);
+    }
+}
+
+export const Suggestion = {
+    getTypes() {
+        return ApiService.get('/resource/types');
+    },
+    create(resource) {
+        return ApiService.post('/suggestion/add', { resource })
+    },
+    get(params) {
+        return ApiService.query('/suggestion', params)
+    },
+    setState(slug, state) {
+        return ApiService.put(`/suggestion/state/${slug}`, state);
+    },
+    remove(slug) {
+        return ApiService.delete(`/suggestion/slug/${slug}`);
     }
 }
