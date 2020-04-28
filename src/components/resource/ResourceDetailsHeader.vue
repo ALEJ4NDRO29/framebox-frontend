@@ -9,13 +9,18 @@
         />
 
         <!-- IF ADMIN UPDATE BTN -->
-        <b-row class="btn-update" v-if="currentUser && currentUser.isAdmin">
+        <b-row class="btn-spacing" v-if="currentUser && currentUser.isAdmin">
           <b-button
             :to="{name: 'ResourcesConfigure', params: {slug: resource.resource.slug}}"
             variant="framebox-primary"
             block
           >{{$t('update')}}</b-button>
         </b-row>
+
+        <!-- AÑADIR A LIST -->
+        <div v-if="currentUser">
+          <resource-add-to-list />
+        </div>
 
         <b-row>
           <b-col>
@@ -70,6 +75,7 @@
 <script>
 import { mapGetters } from "vuex";
 import ResourceIconType from "@/components/resource/ResourceIconType";
+import ResourceAddToList from "@/components/resource/ResourceAddToList";
 import ReviewsResourceList from "@/components/reviews/ReviewsResourceList";
 import {
   RESOURCES_REMOVE_VIEWED,
@@ -80,7 +86,8 @@ export default {
   name: "ResourceDetailsHeader",
   components: {
     ResourceIconType,
-    ReviewsResourceList
+    ReviewsResourceList,
+    ResourceAddToList
   },
   data() {
     return {
@@ -137,8 +144,8 @@ export default {
 
 <style scoped>
 .date,
-.btn-update {
-  margin-bottom: 25px;
+.btn-spacing {
+  margin-bottom: 15px;
 }
 img {
   margin-bottom: 10px;

@@ -1,5 +1,7 @@
 {
   "about": "About",
+  "add_to_list": "Add to list",
+  "added": "Added",
   "already_have_account": "Already have an account?",
   "average": "Average",
   "average_rate": "Average rate",
@@ -9,6 +11,7 @@
   "click_again_to_remove": "Click again to remove",
   "company": "Company",
   "confirm": "Confirm",
+  "content": "Content",
   "create": "Create",
   "create_account": "Create account",
   "create_list": "Create list",
@@ -19,6 +22,7 @@
   "edit": "Edit",
   "edit_profile": "Edit profile",
   "email": "Email",
+  "empty_list": "Empty list",
   "home": "Home",
   "image_url": "Image Url",
   "invalid_credentials": "Invalid credentials",

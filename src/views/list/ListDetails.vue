@@ -3,6 +3,7 @@
     <span v-if="error">{{$t('cannot_load_list')}}</span>
     <div v-if="list">
       <list-details-header />
+      <list-resources-content />
     </div>
   </div>
 </template>
@@ -11,17 +12,19 @@
 import { LIST_DETAILS_LOAD, LIST_DETAILS_UNLOAD } from "@/store/actions.types";
 import { mapGetters } from "vuex";
 import ListDetailsHeader from "@/components/list/ListDetailsHeader";
+import ListResourcesContent from "@/components/list/ListResourcesContent";
 
 export default {
   name: "ListDetails",
+  components: {
+    ListDetailsHeader,
+    ListResourcesContent
+  },
+
   data() {
     return {
       error: false
     };
-  },
-
-  components: {
-    ListDetailsHeader
   },
 
   computed: {
@@ -32,7 +35,11 @@ export default {
 
   mounted() {
     var params = {
-      slug: this.$route.params.slug
+      slug: this.$route.params.slug,
+      paginate: {
+        limit: 5,
+        page: 1
+      }
     };
 
     this.$store.dispatch(LIST_DETAILS_LOAD, params).catch(() => {

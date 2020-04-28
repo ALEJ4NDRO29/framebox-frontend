@@ -137,6 +137,9 @@ export const List = {
     get(params) {
         return ApiService.query('/list/me', params);
     },
+    getContent(slug, params) {
+        return ApiService.query(`/list/content/${slug}`, params);
+    },
     create(list) {
         return ApiService.post('/list/me', { list });
     },
@@ -146,7 +149,16 @@ export const List = {
     remove(slug){
         return ApiService.delete(`/list/remove/${slug}`);
     },
+    getTitles() {
+        return ApiService.get('/list/me/title');
+    },
     getDetails(slug) {
         return ApiService.get(`/list/get/${slug}`);
+    },
+    addContent(listSlug, resource) {
+        return ApiService.post(`/list/content/${listSlug}`, resource);
+    },
+    removeContent(listSlug, resource) {
+        return ApiService.delete(`/list/content/${listSlug}`, resource);
     }
 }
