@@ -50,7 +50,7 @@
           <b>{{$t('bio')}}:</b>
         </b-col>
         <b-col>
-          <span>{{profile.bio}}</span>
+          <pre class="default">{{profile.bio}}</pre>
         </b-col>
       </b-row>
     </div>
