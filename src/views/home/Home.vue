@@ -1,19 +1,19 @@
 <template>
   <div>
-    <resource-list/>
+    <resource-latest/>
 
     <review-latest/>
   </div>
 </template>
 
 <script>
-import ResourceList from "@/components/resource/ResourceLatest";
+import ResourceLatest from "@/components/resource/ResourceLatest";
 import ReviewLatest from "@/components/reviews/ReviewLatest";
 
 export default {
   name: "Home",
   components: {
-    ResourceList,
+    ResourceLatest,
     ReviewLatest
   },
  
