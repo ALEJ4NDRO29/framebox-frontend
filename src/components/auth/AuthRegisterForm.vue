@@ -65,7 +65,7 @@ export default {
         await this.$store.dispatch(REGISTER_USER, {user});
         this.$router.push({ name: "Home" });
       } catch (e) {
-        console.log(e);
+        // console.log(e);
         this.error = "invalid_credentials";
       } finally {
         this.processing = false;
