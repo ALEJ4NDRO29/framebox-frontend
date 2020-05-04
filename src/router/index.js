@@ -105,6 +105,11 @@ const routes = [
     component: () => import('../views/suggestions/Suggestions')
   },
   {
+    path: '/suggestions/create',
+    name: 'SuggestionsCreate',
+    component: () => import('../views/suggestions/SuggestionsCreate')
+  },
+  {
     path: '*',
     redirect: '/'
   }

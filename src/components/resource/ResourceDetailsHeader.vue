@@ -64,7 +64,7 @@
           v-if="resource.resource.releasedAt"
         >{{formatDate(resource.resource.releasedAt)}}</div>
 
-        <div v-if="resource.resource.description">{{resource.resource.description}}</div>
+        <pre class="default" v-if="resource.resource.description">{{resource.resource.description}}</pre>
 
         <reviews-resource-list />
       </b-col>

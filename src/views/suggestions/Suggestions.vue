@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>{{$t('suggestions')}}</h1>
+          <b-button :to="{name: 'SuggestionsCreate'}" variant="framebox-primary">{{$t('create')}}</b-button>
     <suggestion-list @pageUpdate="setPage"/>
   </div>
 </template>

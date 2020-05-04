@@ -15,7 +15,7 @@
         :classes="BOOTSTRAP_PAGINATION_CLASSES"
       ></v-pagination>
     </div>
-    <div v-else>{{$('no_suggestions')}}</div>
+    <div v-else>{{$t('no_suggestions')}}</div>
   </div>
 </template>
 
