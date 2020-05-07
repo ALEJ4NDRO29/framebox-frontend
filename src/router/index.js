@@ -14,7 +14,8 @@ const loginRequired = [
   'List',
   'ListsCreate',
   'ListConfigure',
-  'Suggestions'
+  'Suggestions',
+  'SuggestionsCreate'
 ];
 const loginNotRequired = ['Login', 'Register'];
 

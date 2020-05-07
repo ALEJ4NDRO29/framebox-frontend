@@ -9,11 +9,11 @@
         :placeholder="$t('search')"
       ></b-form-input>
       <!-- TODO: Autocomplete -->
-      <datalist id="autocomplete">
+      <!-- <datalist id="autocomplete">
         <option value="test">
           <resource-icon-type type="Movie" />Test
         </option>
-      </datalist>
+      </datalist> -->
 
       <!-- BTN SEARCH -->
       <b-input-group-append>
@@ -26,14 +26,14 @@
 </template>
 
 <script>
-import ResourceIconType from "@/components/resource/ResourceIconType";
+// import ResourceIconType from "@/components/resource/ResourceIconType";
 import { RESOURCES_SEARCH } from "@/store/actions.types";
 
 export default {
   name: "ResourceSearch",
-  components: {
-    ResourceIconType
-  },
+  // components: {
+  //   ResourceIconType
+  // },
 
   data() {
     return {
