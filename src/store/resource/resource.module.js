@@ -163,7 +163,7 @@ const mutations = {
         state.reviews = reviews;
     },
     [UNSET_RESOURCE_REVIEWS](state) {
-        state.reviews;
+        state.reviews = null;
     },
 
     [SET_RESOURCE_MY_REVIEW](state, review) {
