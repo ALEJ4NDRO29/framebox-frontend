@@ -1,6 +1,6 @@
 <template>
   <div v-if="reviews && reviews.docs.length > 0">
-    <review-preview v-for="(review, key) in reviews.docs" :key="key" :review="review" />
+    <review-preview :showImage="true" v-for="(review, key) in reviews.docs" :key="key" :review="review" />
 
     <v-pagination
       v-model="currentPage"

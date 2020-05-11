@@ -1,7 +1,7 @@
 <template>
   <div v-if="reviews">
     <h2>{{$t('recently_reviews')}} </h2>
-    <review-preview v-for="(review, key) in reviews.docs" :key="key" :review="review" />
+    <review-preview :showImage="showImage" v-for="(review, key) in reviews.docs" :key="key" :review="review" />
   </div>
   <div v-else>
     <!-- <b-spinner variant="light" label="Loading..."></b-spinner> -->
@@ -18,6 +18,9 @@ import ReviewPreview from "@/components/reviews/ReviewPreview";
 
 export default {
   name: "ReviewLatest",
+  props: {
+    showImage: Boolean
+  },
   components: {
     ReviewPreview
   },

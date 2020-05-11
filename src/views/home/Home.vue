@@ -2,7 +2,7 @@
   <div>
     <resource-latest/>
 
-    <review-latest/>
+    <review-latest :showImage="true"/>
   </div>
 </template>
 
