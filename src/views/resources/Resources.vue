@@ -22,6 +22,11 @@ export default {
       currentUser: 'getCurrentUser'
     })
   },
+  
+  mounted() {
+    window.document.title = `${this.$t('search')} - Framebox`;
+  },
+
   components: {
     ResourceSearcher,
     ResourceSearchResult

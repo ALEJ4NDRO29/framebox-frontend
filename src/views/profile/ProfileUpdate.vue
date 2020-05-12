@@ -30,6 +30,7 @@ export default {
   },
 
   mounted() {
+    window.document.title = `${this.$t('profile_update')} - Framebox`;
     this.loadProfile();
   },
 

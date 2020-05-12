@@ -3,7 +3,7 @@
     <b-card-text>
       <b-row>
         <b-col lg="2" cols="4" v-if="showImage">
-          <img class="img-fluid img-thumbnail" :src="getImageUrl()" :alt="resource.title" />
+          <img class="img-fluid img-thumbnail" :src="getImageUrl()" :alt="review.resource.title" />
         </b-col>
         <b-col>
           <h2>
@@ -48,8 +48,8 @@ export default {
 
   methods: {
     getImageUrl() {
-      if (this.resource.imageUrl) {
-        return this.resource.imageUrl;
+      if (this.review.resource.imageUrl) {
+        return this.review.resource.imageUrl;
       } else {
         return require("../../assets/default-movie.jpg");
       }

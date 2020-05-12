@@ -46,6 +46,7 @@ export default {
       this.$router.push({ name: "Home" });
       return;
     }
+    window.document.title = `${this.$t('update_resource')} - Framebox`;
 
     this.$store
       .dispatch(RESOURCE_UPDATE_LOAD, this.$route.params.slug)

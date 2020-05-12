@@ -20,6 +20,7 @@ export default {
   },
 
   mounted() {
+    window.document.title = `${this.$t('suggestions')} - Framebox`;
     this.$store.dispatch(SUGGESTION_LIST_LOAD, { limit: 5 });
   },
 

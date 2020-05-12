@@ -1,8 +1,8 @@
 <template>
   <div>
-    <resource-latest/>
+    <resource-latest />
 
-    <review-latest :showImage="true"/>
+    <review-latest :showImage="true" />
   </div>
 </template>
 
@@ -16,6 +16,8 @@ export default {
     ResourceLatest,
     ReviewLatest
   },
- 
+  mounted() {
+    window.document.title = `${this.$t("home")} - Framebox`;
+  }
 };
 </script>

@@ -3,7 +3,9 @@
     <div class="text-center">
       <img alt="Framebox logo" src="../../assets/logo-h.png" class="img-fluid center" />
     </div>
-
+    <p>
+      {{$t('about')}}
+    </p>
       <!-- <b-row v-if="currentUser">
         <b-col cols="12" lg="6" offset-lg="3">
           <suggestion-form />
@@ -28,6 +30,9 @@ export default {
     ...mapGetters({
       currentUser: "getCurrentUser"
     })
+  },
+  mounted() {
+    window.document.title = `${this.$t('about')} - Framebox`;
   }
 };
 </script>

@@ -53,6 +53,7 @@ export default {
   },
 
   mounted() {
+    window.document.title = `${this.$route.params.nickname} - Framebox`;
     this.loadProfile();
   },
 

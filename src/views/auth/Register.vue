@@ -20,6 +20,9 @@ export default {
   name: "Register",
   components: {
     AuthRegisterForm
+  },
+  mounted() {
+    window.document.title = `${this.$t("create_account")} - Framebox`;
   }
 };
 </script>

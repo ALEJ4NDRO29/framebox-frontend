@@ -32,12 +32,17 @@ export default {
     })
   },
   async mounted() {
+    window.document.title = "Framebox";
+
     try {
       var params = {
         slug: this.$route.params.slug,
         userLogged: this.currentUser !== null
       };
       await this.$store.dispatch(RESOURCES_DETAILS_LOAD, params);
+      setTimeout(() => { // FIXME
+        window.document.title = `${this.resource.resource.title} - Framebox`;
+      }, 200);
     } catch (e) {
       this.error = "resource_not_found";
     }

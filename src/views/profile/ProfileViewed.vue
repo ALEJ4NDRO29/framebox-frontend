@@ -11,6 +11,9 @@ export default {
   name: "ProfileViewed",
   components: {
       ProfileViewedList
+  },
+  mounted() {
+    window.document.title = `${this.$t('viewed_content')} - Framebox`;
   }
 };
 </script>

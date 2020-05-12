@@ -23,9 +23,9 @@ export default {
   name: "ListConfigure",
   data() {
     return {
-      removeText: 'remove',
+      removeText: "remove",
       clickAgainToConfirmRemove: false
-    }
+    };
   },
 
   computed: {
@@ -39,6 +39,7 @@ export default {
   },
 
   mounted() {
+    window.document.title = this.$t("list_update");
     var slug = this.$route.params.slug;
     this.$store.dispatch(LIST_UPDATING_LOAD, slug);
     // TODO COMPROBAR PERMISOS
@@ -57,9 +58,9 @@ export default {
         params: { slug: list.list.slug }
       });
     },
-    
+
     async remove() {
-       if (!this.clickAgainToConfirmRemove) {
+      if (!this.clickAgainToConfirmRemove) {
         this.clickAgainToConfirmRemove = true;
         this.removeText = "click_again_to_remove";
         setTimeout(() => {

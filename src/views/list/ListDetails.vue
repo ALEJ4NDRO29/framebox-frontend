@@ -34,6 +34,8 @@ export default {
   },
 
   mounted() {
+    window.document.title = this.$t("list");
+
     var params = {
       slug: this.$route.params.slug,
       paginate: {
@@ -42,9 +44,16 @@ export default {
       }
     };
 
-    this.$store.dispatch(LIST_DETAILS_LOAD, params).catch(() => {
-      this.error = true;
-    });
+    this.$store
+      .dispatch(LIST_DETAILS_LOAD, params)
+      .then(() => {
+        setTimeout(() => { // FIXME
+          window.document.title = `${this.list.list.name} - ${this.$t("list")}`;
+        }, 200);
+      })
+      .catch(() => {
+        this.error = true;
+      });
   },
 
   beforeDestroy() {

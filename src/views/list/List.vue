@@ -17,6 +17,7 @@ export default {
   },
 
   mounted() {
+    window.document.title = `${this.$t("my_lists")} - Framebox`;
     this.setPage(1);
   },
 

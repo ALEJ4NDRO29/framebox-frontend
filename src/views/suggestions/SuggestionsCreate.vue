@@ -19,6 +19,9 @@ export default {
     ...mapGetters({
       currentUser: "getCurrentUser"
     })
+  },
+  mounted() {
+    window.document.title = `${this.$t("suggestions")} - Framebox`;
   }
 };
 </script>

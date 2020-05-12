@@ -1,22 +1,33 @@
 <template>
   <b-card>
     <b-card-text>
-      <div>
-        <resource-icon-type class="icon" :type="listResource.resource.type.name" />
+      <b-row>
+        <b-col lg="2" cols="4">
+          <img
+            class="img-fluid img-thumbnail"
+            :src="getImageUrl()"
+            :alt="listResource.resource.title"
+          />
+        </b-col>
+        <b-col>
+          <div class="h2">
+            <resource-icon-type class="icon" :type="listResource.resource.type.name" />
 
-        <router-link
-          :to="{name: 'ResourcesDetails', params: {slug: listResource.resource.slug}}"
-        >{{listResource.resource.title}}</router-link>
-      </div>
-      <div>
-        <span>{{$t('added')}} — {{formatDate(listResource.createdAt)}}</span>
-      </div>
-      <div v-if="currentUser && currentUser.nickname === list.list.owner.nickname">
-        <b-button
-          @click="remove(listResource.resource.slug)"
-          variant="outline-danger"
-        >{{$t(removeText)}}</b-button>
-      </div>
+            <router-link
+              :to="{name: 'ResourcesDetails', params: {slug: listResource.resource.slug}}"
+            >{{listResource.resource.title}}</router-link>
+          </div>
+          <div>
+            <span>{{$t('added')}} — {{formatDate(listResource.createdAt)}}</span>
+          </div>
+          <div v-if="currentUser && currentUser.nickname === list.list.owner.nickname">
+            <b-button
+              @click="remove(listResource.resource.slug)"
+              variant="outline-danger"
+            >{{$t(removeText)}}</b-button>
+          </div>
+        </b-col>
+      </b-row>
     </b-card-text>
   </b-card>
 </template>
@@ -51,6 +62,13 @@ export default {
   },
 
   methods: {
+    getImageUrl() {
+      if (this.listResource.resource.imageUrl) {
+        return this.listResource.resource.imageUrl;
+      } else {
+        return require("../../assets/default-movie.jpg");
+      }
+    },
     formatDate(dateStr) {
       var date = new Date(dateStr);
       return `${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`;
@@ -74,7 +92,7 @@ export default {
       await List.removeContent(this.list.list.slug, resource);
       this.clickAgainToConfirmRemove = false;
       this.removeText = "remove";
-      
+
       this.$emit("update");
     }
   }

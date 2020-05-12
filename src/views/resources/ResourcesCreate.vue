@@ -27,7 +27,9 @@ export default {
   mounted() {
     if (!this.currentUser.isAdmin) {
       this.$router.push({ name: "Home" });
+      return;
     }
+    window.document.title = `${this.$t('create_resource')} - Framebox`;
   },
   methods: {
     async submit(resourceCreate) {

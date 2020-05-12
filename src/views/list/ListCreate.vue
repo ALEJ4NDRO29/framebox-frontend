@@ -18,6 +18,9 @@ export default {
   components: {
     ListForm
   },
+  mounted() {
+    window.document.title = this.$t("create_list");
+  },
   methods: {
     async submit(createList) {
       var res = await List.create(createList);

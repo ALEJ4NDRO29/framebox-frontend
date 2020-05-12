@@ -20,6 +20,9 @@ export default {
   name: "Login",
   components: {
     AuthLoginForm
+  },
+  mounted() {
+    window.document.title = `${this.$t("login")} - Framebox`;
   }
 };
 </script>
