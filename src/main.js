@@ -19,11 +19,18 @@ import {
   faStar, faMusic, faGamepad, faCouch, faFilm,
   faSearch, faEye, faEyeSlash, faEdit
 } from '@fortawesome/free-solid-svg-icons'
+import VueAnalytics from 'vue-analytics';
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.component('v-pagination', vPagination);
+
+// Configuration VueAnalytics
+Vue.use(VueAnalytics, {
+  id: process.env.VUE_APP_ANALYTICS,
+  router
+});
 
 /**
  *  Utilizar:
