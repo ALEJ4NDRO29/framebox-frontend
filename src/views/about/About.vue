@@ -1,23 +1,13 @@
 <template>
-  <div>
-    <div class="text-center">
-      <img alt="Framebox logo" src="../../assets/logo-h.png" class="img-fluid center" />
-    </div>
+  <div class="text-center">
+    <img alt="Framebox logo" src="../../assets/logo-h.png" class="img-fluid center" />
+    <p class="h3">Sources</p>
     <p>
-      {{$t('about')}}
+      <a href="https://github.com/ALEJ4NDRO29/framebox-backend" target="_blank">Backend</a>
     </p>
-      <!-- <b-row v-if="currentUser">
-        <b-col cols="12" lg="6" offset-lg="3">
-          <suggestion-form />
-        </b-col>
-      </b-row>
-    
-    <div v-else>
-      <span>
-        <router-link :to="{name: 'Login'}">{{$t('login')}}</router-link>
-        {{$t('to_send_suggestion')}}.
-      </span>
-    </div> -->
+    <p>
+      <a href="https://github.com/ALEJ4NDRO29/framebox-frontend" target="_blank">Frontend</a>
+    </p>
   </div>
 </template>
 
@@ -32,7 +22,7 @@ export default {
     })
   },
   mounted() {
-    window.document.title = `${this.$t('about')} - Framebox`;
+    window.document.title = `${this.$t("about")} - Framebox`;
   }
 };
 </script>
