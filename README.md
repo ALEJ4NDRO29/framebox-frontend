@@ -1,6 +1,6 @@
 # Framebox - Frontend
 
-Frontend repository: <br>
+Backend repository: <br>
 https://github.com/ALEJ4NDRO29/framebox-backend
 
 ## Requirements (Used during development)
