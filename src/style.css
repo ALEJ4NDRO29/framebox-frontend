@@ -109,3 +109,21 @@ pre.default {
     line-height: 1.5;
     white-space: pre-wrap;
 }
+
+.page-item.disabled .page-link/*, .page-link*/ {
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.page-link {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    color: #fff; 
+    background-color: transparent;
+} 
+
+.page-item.active .page-link {
+    color: #fff; 
+    background-color: #545b62;
+    border-color: #fff; 
+}

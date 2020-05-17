@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import {
   faStar, faMusic, faGamepad, faCouch, faFilm,
-  faSearch, faEye, faEyeSlash, faEdit
+  faSearch, faEye, faEyeSlash, faEdit, faBook
 } from '@fortawesome/free-solid-svg-icons'
 import VueAnalytics from 'vue-analytics';
 
@@ -38,7 +38,7 @@ Vue.use(VueAnalytics, {
  */
 library.add([
   faStar, faFilm, faMusic, faGamepad, faCouch,
-  faSearch, faEye, faEyeSlash, faEdit]);
+  faSearch, faEye, faEyeSlash, faEdit, faBook]);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 ApiService.init();

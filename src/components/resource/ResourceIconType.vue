@@ -29,6 +29,9 @@ export default {
       case "Videogame":
         this.icon = "gamepad";
         break;
+      case "Book":
+        this.icon = "book";
+        break;
     }
   }
 };
