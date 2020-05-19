@@ -110,7 +110,7 @@ pre.default {
     white-space: pre-wrap;
 }
 
-.page-item.disabled .page-link/*, .page-link*/ {
+.page-item.disabled .page-link {
     color: #ffffff;
     background-color: transparent;
 }

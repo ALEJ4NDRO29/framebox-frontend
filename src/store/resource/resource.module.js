@@ -28,7 +28,7 @@ const state = {
 
 const actions = {
     async [RESOURCES_LATEST_LOAD]({ commit }) {
-        var res = await Resource.get({ limit: 5 });
+        var res = await Resource.get({ limit: 6 });
         var resources = res.data;
         commit(SET_LATEST_RESOURCES, resources);
     },

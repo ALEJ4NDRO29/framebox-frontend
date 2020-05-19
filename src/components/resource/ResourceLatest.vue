@@ -1,7 +1,15 @@
 <template>
   <div v-if="resources">
     <h2>{{$t('recently_added')}}</h2>
-    <resource-preview v-for="(resource, key) in resources.docs" :resource="resource" :key="key" />
+    <b-row>
+      <resource-preview
+        class="col-lg-4 col-md-6 col-12"
+        :imgCols="4"
+        v-for="(resource, key) in resources.docs"
+        :resource="resource"
+        :key="key"
+      />
+    </b-row>
   </div>
   <div v-else>
     <!-- <b-spinner variant="light" label="Loading..."></b-spinner> -->
@@ -10,7 +18,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { RESOURCES_LATEST_LOAD, RESOURCES_LATEST_UNLOAD } from "@/store/actions.types";
+import {
+  RESOURCES_LATEST_LOAD,
+  RESOURCES_LATEST_UNLOAD
+} from "@/store/actions.types";
 import ResourcePreview from "@/components/resource/ResourcePreview";
 
 export default {

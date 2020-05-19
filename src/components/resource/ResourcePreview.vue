@@ -1,23 +1,25 @@
 <template>
-  <b-card>
-    <b-card-text>
-      <b-row>
-        <b-col lg="2" cols="4">
-          <img class="img-fluid img-thumbnail" :src="getImageUrl()" :alt="resource.title" />
-        </b-col>
+  <div>
+    <b-card>
+      <b-card-text>
+        <b-row>
+          <b-col :cols="imgCols ? imgCols : 2">
+            <img class="img-fluid img-thumbnail" :src="getImageUrl()" :alt="resource.title" />
+          </b-col>
 
-        <b-col>
-          <p class="h2">
-            <resource-icon-type class="icon" :type="resource.type.name" />
-            <router-link
-              :to="{name: 'ResourcesDetails', params: {slug: resource.slug}}"
-            >{{resource.title}}</router-link>
-          </p>
-          <p v-if="resource.releasedAt">{{formatDate(resource.releasedAt)}}</p>
-        </b-col>
-      </b-row>
-    </b-card-text>
-  </b-card>
+          <b-col>
+            <p class="h4">
+              <resource-icon-type class="icon" :type="resource.type.name" />
+              <router-link
+                :to="{name: 'ResourcesDetails', params: {slug: resource.slug}}"
+              >{{resource.title}}</router-link>
+            </p>
+            <p v-if="resource.releasedAt">{{formatDate(resource.releasedAt)}}</p>
+          </b-col>
+        </b-row>
+      </b-card-text>
+    </b-card>
+  </div>
 </template>
 
 <script>
@@ -26,7 +28,8 @@ import ResourceIconType from "@/components/resource/ResourceIconType";
 export default {
   name: "ResourcePreview",
   props: {
-    resource: Object
+    resource: Object,
+    imgCols: Number
   },
   components: {
     ResourceIconType
